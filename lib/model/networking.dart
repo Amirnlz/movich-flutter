@@ -11,7 +11,7 @@ class Networking {
   Networking({required this.imdbId});
 
   Future<Movie> requestDetails() async {
-    var requestURL = Uri.parse('$siteUrl?apikey=$apiKey&i=$imdbId');
+    var requestURL = Uri.parse('$siteUrl?apikey=$apiKey&i=$imdbId&plot=full');
     http.Response response = await http.get(requestURL);
     if (response.statusCode == 200) {
       var decodeJson = jsonDecode(response.body);
