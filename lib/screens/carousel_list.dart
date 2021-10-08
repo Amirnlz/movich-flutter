@@ -1,84 +1,133 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:movich/model/movie_data.dart';
-import 'package:movich/widgets/image_details.dart';
-import 'package:movich/constants.dart';
-import 'movie_screen.dart';
+import 'package:movich/utilities/constants.dart';
+import 'package:movich/model/results.dart';
+import 'package:movich/model/media_data.dart';
+import 'package:movich/widgets/rating_bar.dart';
+import 'package:movich/widgets/shimmer_widget.dart';
 
 class CarouselList extends StatefulWidget {
-  const CarouselList({Key? key}) : super(key: key);
+  final MediaType mediaType;
+  final MediaListType mediaListType;
+
+  const CarouselList({
+    Key? key,
+    required this.mediaType,
+    required this.mediaListType,
+  }) : super(key: key);
 
   @override
   State<CarouselList> createState() => _CarouselListState();
 }
 
 class _CarouselListState extends State<CarouselList> {
-  final MovieData movieData = MovieData();
-  List movieList = [];
-
-  void loadDetails() async {
-    await movieData.createSeriesList();
-    setState(() {
-      movieList = movieData.getSeriesList;
-    });
-  }
+  List<Results> results = [];
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    loadDetails();
+    loadData();
+  }
+
+  Future loadData() async {
+    List<Results> getResult = await MediaData().getMediaList(
+      widget.mediaType,
+      widget.mediaListType,
+    );
+    setState(() {
+      isLoading = false;
+      results = getResult;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 290,
-      decoration: const BoxDecoration(),
+    return SizedBox(
+      height: 300,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
+        itemCount: isLoading ? 20 : results.length,
         itemBuilder: (context, int index) {
-          final movie = movieList[index];
-          return Container(
-            width: 200,
-            decoration: const BoxDecoration(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MovieScreen(movie)),
-                    );
-                  },
-                  child: Container(
-                    height: 220,
-                    width: 160,
-                    decoration: kImageContainerDecoration,
-                    child: Hero(
-                      tag: movie.imageUrl,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image(
-                          image: NetworkImage(movie.imageUrl),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                ImageDetails(detail: movie),
-              ],
+          return Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 8.0, 10.0, 0.0),
+            child: SizedBox(
+              width: 170,
+              child: isLoading ? shimmerColumn() : buildItems(results[index]),
             ),
           );
         },
-        itemCount: movieList.length,
       ),
+    );
+  }
+
+  Widget shimmerColumn() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const [
+        ShimmerWidget(
+          height: 220,
+        ),
+        SizedBox(
+          height: 8,
+        ),
+        ShimmerWidget(
+          height: 10,
+          width: 100,
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        ShimmerWidget(
+          height: 10,
+          width: 150,
+        ),
+      ],
+    );
+  }
+
+  Column buildItems(Results result) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 220,
+          width: 160,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image(
+              image: NetworkImage(
+                'https://image.tmdb.org/t/p/w200${result.posterPath}',
+              ),
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Text(
+          result.title,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+          ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        const SizedBox(
+          height: 3,
+        ),
+        Text(
+          result.mediaGenre.join(', '),
+          style: const TextStyle(
+            color: Colors.grey,
+            fontSize: 13,
+          ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        RatingBar(rating: result.voteAverage),
+      ],
     );
   }
 }
