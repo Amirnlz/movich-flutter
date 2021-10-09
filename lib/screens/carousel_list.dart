@@ -42,16 +42,16 @@ class _CarouselListState extends State<CarouselList> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
+    return AspectRatio(
+      aspectRatio: 6 / 5,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: isLoading ? 20 : results.length,
         itemBuilder: (context, int index) {
-          return Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 8.0, 10.0, 0.0),
-            child: SizedBox(
-              width: 170,
+          return AspectRatio(
+            aspectRatio: 0.57,
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(0.0, 5.0, 15.0, 0.0),
               child: isLoading ? shimmerColumn() : buildItems(results[index]),
             ),
           );
@@ -85,19 +85,16 @@ class _CarouselListState extends State<CarouselList> {
     );
   }
 
-  Column buildItems(Results result) {
+  Widget buildItems(Results result) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          height: 220,
-          width: 160,
+        AspectRatio(
+          aspectRatio: 8 / 11,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: Image(
-              image: NetworkImage(
-                'https://image.tmdb.org/t/p/w200${result.posterPath}',
-              ),
+            borderRadius: BorderRadius.circular(20),
+            child: Image.network(
+              'https://image.tmdb.org/t/p/w200${result.posterPath}',
               fit: BoxFit.fill,
             ),
           ),

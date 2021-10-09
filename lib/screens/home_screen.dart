@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movich/screens/carousel_list.dart';
 import 'package:movich/utilities/constants.dart';
+import 'package:animate_do/animate_do.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -37,29 +38,35 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                createCarouselList(
-                  'Trending Movie',
-                  MediaType.movie,
-                  MediaListType.trending,
+                FadeInDown(
+                  child: createCarouselList(
+                    'Trending Movie',
+                    MediaType.movie,
+                    MediaListType.trending,
+                  ),
                 ),
-                createCarouselList(
-                    'Trending Tv', MediaType.tv, MediaListType.trending),
-                createCarouselList('Top Rated Movie', MediaType.movie,
-                    MediaListType.top_rated),
-                createCarouselList(
-                    'Top Rated TV', MediaType.tv, MediaListType.top_rated),
-                createCarouselList(
-                    'Popular Movie', MediaType.movie, MediaListType.popular),
-                createCarouselList(
-                    'Popular TV', MediaType.tv, MediaListType.popular),
-                createCarouselList('Now Playing Movie', MediaType.movie,
-                    MediaListType.now_playing),
-                createCarouselList('TV Airing Today', MediaType.tv,
-                    MediaListType.airing_today),
-                createCarouselList(
-                    'Upcoming Movie', MediaType.movie, MediaListType.upcoming),
-                createCarouselList(
-                    'TV on the Air', MediaType.tv, MediaListType.on_the_air),
+                FadeInRight(
+                  child: createCarouselList(
+                    'Trending Tv',
+                    MediaType.tv,
+                    MediaListType.trending,
+                  ),
+                ),
+                // TODO: Add slide here
+                FadeInUp(
+                  child: createCarouselList(
+                    'Top Rated Movie',
+                    MediaType.movie,
+                    MediaListType.top_rated,
+                  ),
+                ),
+                FadeInLeft(
+                  child: createCarouselList(
+                    'Top Rated TV',
+                    MediaType.tv,
+                    MediaListType.top_rated,
+                  ),
+                ),
               ],
             ),
           ),
