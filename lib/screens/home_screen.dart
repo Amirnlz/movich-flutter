@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movich/screens/carousel_list.dart';
+import 'package:movich/widgets/carousel_list.dart';
 import 'package:movich/utilities/constants.dart';
 import 'package:animate_do/animate_do.dart';
 

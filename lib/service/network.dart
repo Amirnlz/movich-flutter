@@ -1,18 +1,18 @@
 import 'package:http/http.dart' as http;
+import 'package:movich/model/genre_data.dart';
 import 'dart:convert';
 import 'package:movich/utilities/constants.dart';
 import 'package:movich/model/page_data.dart';
 import 'package:movich/model/results.dart';
-import 'genre_network.dart';
 
 class Network {
   final MediaType mediaType;
-  TimeWindow timeWindow;
   final MediaListType mediaListType;
   late final String title;
   late final String orgTitle;
   late final String releaseDate;
   int pageNumber;
+  TimeWindow timeWindow;
 
   Network({
     required this.mediaType,
@@ -36,10 +36,12 @@ class Network {
 
   String _getUrl() {
     if (mediaListType == MediaListType.trending) {
-      return '$apiUrl/${mediaListType.toShortString()}/${mediaType.toShortString()}/${timeWindow.toShortString()}'
+      return '$apiUrl/${mediaListType.toShortString()}/${mediaType.toShortString()}'
+          '/${timeWindow.toShortString()}'
           '?api_key=$apiKey&page=$pageNumber';
     } else {
-      return '$apiUrl/${mediaType.toShortString()}/${mediaListType.toShortString()}?api_key=$apiKey&page=$pageNumber';
+      return '$apiUrl/${mediaType.toShortString()}/${mediaListType.toShortString()}'
+          '?api_key=$apiKey&page=$pageNumber';
     }
   }
 
@@ -55,8 +57,8 @@ class Network {
     List<Results> results = [];
     _setMovieOrTvKeys();
     for (int i = 0; i < resultsJson.length; i++) {
-      List<String> genreNames = await GenreNetwork(mediaType)
-          .getGenreListName(resultsJson[i]['genre_ids'].cast<int>());
+      List<int> genreIds = resultsJson[i]['genre_ids'].cast<int>();
+      List<String> genreNames = await getGenresName(genreIds);
       results.add(
         Results(
           id: resultsJson[i]['id'],
@@ -82,5 +84,11 @@ class Network {
         mediaType == MediaType.movie ? 'original_title' : 'original_name';
     releaseDate =
         mediaType == MediaType.movie ? 'release_date' : 'first_air_date';
+  }
+
+  Future<List<String>> getGenresName(List<int> genreIds) async {
+    GenreData genreData = GenreData(mediaType);
+    List<String> genreNames = await genreData.getGenresName(genreIds);
+    return genreNames;
   }
 }
