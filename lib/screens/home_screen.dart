@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:movich/widgets/carousel_list.dart';
 import 'package:movich/utilities/constants.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:movich/widgets/navigation_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,20 +23,37 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
-                      'Movich',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 40,
-                        color: Colors.amberAccent,
-                      ),
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Hello Amir!',
+                          style: TextStyle(
+                            fontSize: 30,
+                            letterSpacing: 1.1,
+                            fontFamily: 'Oxygen',
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'See, Whats Next',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontFamily: 'Oxygen',
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xffC3D5FE),
+                          ),
+                        )
+                      ],
                     ),
-                    Icon(
-                      Icons.search_rounded,
-                      color: Colors.white,
-                      size: 30,
-                    )
+                    const CircleAvatar(
+                      radius: 25.0,
+                      backgroundImage: AssetImage('images/face2.webp'),
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -71,6 +92,8 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
+        bottomNavigationBar: const NavigationBar(),
+        extendBody: true,
       ),
     );
   }
@@ -100,7 +123,8 @@ class HomeScreen extends StatelessWidget {
           title,
           style: const TextStyle(
             fontSize: 20,
-            fontWeight: FontWeight.w700,
+            fontFamily: 'Oxygen',
+            fontWeight: FontWeight.w800,
           ),
         ),
         const Text(

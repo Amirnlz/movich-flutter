@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       },
       home: const HomeScreen(),
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color(0xFF1D1E29),
+        scaffoldBackgroundColor: const Color(0xFF08161a),
       ),
     );
   }

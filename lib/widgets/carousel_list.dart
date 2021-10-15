@@ -26,7 +26,9 @@ class _CarouselListState extends State<CarouselList> {
   @override
   void initState() {
     super.initState();
-    loadData();
+    if (results.isEmpty) {
+      loadData();
+    }
   }
 
   Future loadData() async {
@@ -106,7 +108,6 @@ class _CarouselListState extends State<CarouselList> {
           result.title,
           style: const TextStyle(
             fontSize: 15,
-            fontWeight: FontWeight.w500,
           ),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
@@ -122,6 +123,9 @@ class _CarouselListState extends State<CarouselList> {
           ),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
+        ),
+        const SizedBox(
+          height: 3,
         ),
         RatingBar(rating: result.voteAverage),
       ],
