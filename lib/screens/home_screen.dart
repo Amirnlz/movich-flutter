@@ -6,9 +6,10 @@ import 'package:flutter/widgets.dart';
 import 'package:movich/widgets/carousel_list.dart';
 import 'package:movich/utilities/constants.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:movich/widgets/navigation_bar.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const String id = 'HomeScreen';
+
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -45,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                             fontSize: 15,
                             fontFamily: 'Oxygen',
                             fontWeight: FontWeight.w400,
-                            color: Color(0xffC3D5FE),
+                            color: Colors.lightBlue,
                           ),
                         )
                       ],
@@ -92,8 +93,8 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: const NavigationBar(),
-        extendBody: true,
+        // bottomNavigationBar: const NavigationBar(),
+        // extendBody: true,
       ),
     );
   }

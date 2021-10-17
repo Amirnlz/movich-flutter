@@ -26,12 +26,11 @@ class _CarouselListState extends State<CarouselList> {
   @override
   void initState() {
     super.initState();
-    if (results.isEmpty) {
-      loadData();
-    }
+    loadData();
   }
 
   Future loadData() async {
+    print('is empty: ${results.isEmpty}');
     List<Results> getResult = await MediaData().getMediaList(
       widget.mediaType,
       widget.mediaListType,

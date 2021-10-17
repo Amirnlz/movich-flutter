@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
+import 'package:movich/widgets/persistent_nav_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
           child: child!,
         );
       },
-      home: const HomeScreen(),
+      home: PersistentNavigationBar(),
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: const Color(0xFF08161a),
       ),
