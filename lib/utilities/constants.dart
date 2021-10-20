@@ -3,15 +3,7 @@ const apiKey = '';
 const apiUrl = 'https://api.themoviedb.org/3';
 
 enum MediaType { tv, movie }
-enum MediaListType {
-  popular,
-  trending,
-  now_playing,
-  top_rated,
-  upcoming,
-  airing_today,
-  on_the_air
-}
+enum MediaListType { trending, top_rated, recommendations }
 enum TimeWindow { day, week }
 enum OriginalLanguage { en, sv }
 enum KnownForMediaType { movie, tv }

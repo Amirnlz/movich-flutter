@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
           child: child!,
         );
       },
+      debugShowCheckedModeBanner: false,
       home: PersistentNavigationBar(),
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: const Color(0xFF08161a),

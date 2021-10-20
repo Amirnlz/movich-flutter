@@ -25,6 +25,9 @@ class RatingBar extends StatelessWidget {
         ),
         Text(
           rating.toString(),
+          style: const TextStyle(
+            fontFamily: 'OpenSans',
+          ),
         )
       ],
     );

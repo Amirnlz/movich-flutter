@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movich/screens/media_screen.dart';
 import 'package:movich/utilities/constants.dart';
 import 'package:movich/model/results.dart';
 import 'package:movich/model/media_data.dart';
@@ -8,11 +9,13 @@ import 'package:movich/widgets/shimmer_widget.dart';
 class CarouselList extends StatefulWidget {
   final MediaType mediaType;
   final MediaListType mediaListType;
+  final int mediaId;
 
   const CarouselList({
     Key? key,
     required this.mediaType,
     required this.mediaListType,
+    this.mediaId = 0,
   }) : super(key: key);
 
   @override
@@ -26,39 +29,69 @@ class _CarouselListState extends State<CarouselList> {
   @override
   void initState() {
     super.initState();
-    loadData();
+    _loadData();
   }
 
-  Future loadData() async {
-    print('is empty: ${results.isEmpty}');
-    List<Results> getResult = await MediaData().getMediaList(
-      widget.mediaType,
-      widget.mediaListType,
-    );
+  Future _loadData() async {
+    List<Results> getResult = await _getSpecificList();
     setState(() {
       isLoading = false;
       results = getResult;
     });
   }
 
+  Future<List<Results>> _getSpecificList() async {
+    if (widget.mediaListType == MediaListType.trending) {
+      return await MediaData()
+          .getTrendingList(widget.mediaType, TimeWindow.week, 1);
+    } else if (widget.mediaListType == MediaListType.top_rated) {
+      return await MediaData().getTopRatedList(widget.mediaType, 1);
+    } else {
+      return await MediaData()
+          .getRecommendedList(widget.mediaType, widget.mediaId);
+    }
+  }
+
+  bool _isListEmpty() {
+    return results.isEmpty;
+  }
+
+  bool _isRecommendedListEmpty() {
+    return _isListEmpty() &&
+        isLoading == false &&
+        MediaListType.recommendations == widget.mediaListType;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 6 / 5,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: isLoading ? 20 : results.length,
-        itemBuilder: (context, int index) {
-          return AspectRatio(
-            aspectRatio: 0.57,
-            child: Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 5.0, 15.0, 0.0),
-              child: isLoading ? shimmerColumn() : buildItems(results[index]),
+    return _isRecommendedListEmpty()
+        ? SizedBox(
+            height: 100,
+            child: Text(
+              'There is no Recommended media.',
+              style: TextStyle(
+                fontFamily: 'OpenSans',
+                color: Colors.grey.shade400,
+              ),
+            ),
+          )
+        : AspectRatio(
+            aspectRatio: 6 / 5,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: isLoading ? 20 : results.length,
+              itemBuilder: (context, int index) {
+                final result = isLoading ? null : results[index];
+                return AspectRatio(
+                  aspectRatio: 0.57,
+                  child: Container(
+                    margin: const EdgeInsets.fromLTRB(0.0, 5.0, 15.0, 0.0),
+                    child: isLoading ? shimmerColumn() : buildItems(result!),
+                  ),
+                );
+              },
             ),
           );
-        },
-      ),
-    );
   }
 
   Widget shimmerColumn() {
@@ -90,13 +123,24 @@ class _CarouselListState extends State<CarouselList> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AspectRatio(
-          aspectRatio: 8 / 11,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.network(
-              'https://image.tmdb.org/t/p/w200${result.posterPath}',
-              fit: BoxFit.fill,
+        GestureDetector(
+          onTap: () {
+            print(result.title);
+            print('id: ${result.id}');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => MediaScreen(results: result)),
+            );
+          },
+          child: AspectRatio(
+            aspectRatio: 8 / 11,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.network(
+                'https://image.tmdb.org/t/p/w200${result.posterPath}',
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ),

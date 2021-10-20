@@ -6,43 +6,55 @@ import 'package:movich/model/page_data.dart';
 import 'package:movich/model/results.dart';
 
 class Network {
-  final MediaType mediaType;
-  final MediaListType mediaListType;
+  late final MediaType mediaType;
   late final String title;
   late final String orgTitle;
   late final String releaseDate;
-  int pageNumber;
-  TimeWindow timeWindow;
 
-  Network({
-    required this.mediaType,
-    this.timeWindow = TimeWindow.week,
-    required this.mediaListType,
-    this.pageNumber = 1,
-  });
+  Future<PageData> getRecommendedMedia(MediaType mediaType, int mediaId) async {
+    this.mediaType = mediaType;
+    String url = '$apiUrl/${mediaType.toShortString()}'
+        '/$mediaId'
+        '/recommendations'
+        '?api_key=$apiKey'
+        '&page=1';
+    print('recommendations: $url');
 
-  Future<PageData> getRequestPage() async {
-    var trendUrl = _getUrl();
-    final response = await _getResponse(trendUrl);
-    print('trend: ${response.statusCode}');
+    return getRequestPage(url);
+  }
+
+  Future<PageData> getTrending(
+      MediaType mediaType, TimeWindow timeWindow, int pageNumber) async {
+    this.mediaType = mediaType;
+    String url = '$apiUrl/trending'
+        '/${mediaType.toShortString()}'
+        '/${timeWindow.toShortString()}'
+        '?api_key=$apiKey'
+        '&page=$pageNumber';
+    print('trending: $url');
+    return getRequestPage(url);
+  }
+
+  Future<PageData> getTopRated(MediaType mediaType, int pageNumber) async {
+    this.mediaType = mediaType;
+    String url = '$apiUrl/${mediaType.toShortString()}'
+        '/top_rated'
+        '?api_key=$apiKey'
+        '&page=$pageNumber';
+    print('top_rated: $url');
+
+    return getRequestPage(url);
+  }
+
+  Future<PageData> getRequestPage(String url) async {
+    final response = await _getResponse(url);
     var decodeJson = jsonDecode(response.body);
-    List<Results> results = await _setResults(decodeJson['results']);
+    List<Results> results = await _getResultsList(decodeJson['results']);
     return PageData(
         page: decodeJson['page'],
         results: results,
         totalPages: decodeJson['total_pages'],
         totalResults: decodeJson['total_results']);
-  }
-
-  String _getUrl() {
-    if (mediaListType == MediaListType.trending) {
-      return '$apiUrl/${mediaListType.toShortString()}/${mediaType.toShortString()}'
-          '/${timeWindow.toShortString()}'
-          '?api_key=$apiKey&page=$pageNumber';
-    } else {
-      return '$apiUrl/${mediaType.toShortString()}/${mediaListType.toShortString()}'
-          '?api_key=$apiKey&page=$pageNumber';
-    }
   }
 
   Future<http.Response> _getResponse(var url) async {
@@ -53,29 +65,33 @@ class Network {
         : throw ('Response failed with $responseCode code}');
   }
 
-  Future<List<Results>> _setResults(var resultsJson) async {
-    List<Results> results = [];
+  Future<List<Results>> _getResultsList(var resultsJson) async {
+    List<Results> resultsList = [];
     _setMovieOrTvKeys();
     for (int i = 0; i < resultsJson.length; i++) {
-      List<int> genreIds = resultsJson[i]['genre_ids'].cast<int>();
-      List<String> genreNames = await getGenresName(genreIds);
-      results.add(
-        Results(
-          id: resultsJson[i]['id'],
-          mediaGenre: genreNames,
-          originalLanguage: resultsJson[i]['original_language'],
-          voteAverage: resultsJson[i]['vote_average'].toDouble(),
-          posterPath: resultsJson[i]['poster_path'],
-          overview: resultsJson[i]['overview'],
-          backdropPath: resultsJson[i]['backdrop_path'],
-          mediaType: mediaType,
-          originalTitle: resultsJson[i][orgTitle],
-          releaseDate: resultsJson[i][releaseDate],
-          title: resultsJson[i][title],
-        ),
-      );
+      Results result = await _setResults(resultsJson[i]);
+      resultsList.add(result);
     }
-    return results;
+    return resultsList;
+  }
+
+  Future<Results> _setResults(var results) async {
+    List<int> genreIds = results['genre_ids'].cast<int>();
+    List<String> genreNames = await getGenresName(genreIds);
+    String voteAverage = results['vote_average'].toStringAsFixed(1);
+    return Results(
+      id: results['id'],
+      mediaGenre: genreNames,
+      originalLanguage: results['original_language'],
+      voteAverage: double.parse(voteAverage),
+      posterPath: results['poster_path'],
+      overview: results['overview'],
+      backdropPath: results['backdrop_path'],
+      mediaType: mediaType,
+      originalTitle: results[orgTitle],
+      releaseDate: results[releaseDate],
+      title: results[title],
+    );
   }
 
   void _setMovieOrTvKeys() {
