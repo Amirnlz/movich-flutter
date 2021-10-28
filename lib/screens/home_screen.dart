@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:movich/widgets/carousel_list.dart';
+import 'package:movich/widgets/lists/horizontal_list.dart';
 import 'package:movich/utilities/constants.dart';
 import 'package:animate_do/animate_do.dart';
 
@@ -105,7 +102,7 @@ class HomeScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _carouselListTitle(title),
-        CarouselList(
+        HorizontalList(
           mediaType: mediaType,
           mediaListType: mediaListType,
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movich/screens/filter_screen.dart';
+import 'package:movich/screens/lists_screen.dart';
 import 'package:movich/screens/home_screen.dart';
 import 'package:movich/screens/profile_screen.dart';
 import 'package:movich/screens/search_screen.dart';
@@ -75,7 +75,7 @@ class PersistentNavigationBar extends StatelessWidget {
         curve: Curves.ease,
         duration: Duration(milliseconds: 650),
       ),
-      navBarStyle: NavBarStyle.style11,
+      navBarStyle: NavBarStyle.neumorphic,
     );
   }
 }

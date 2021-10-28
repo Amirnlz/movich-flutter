@@ -1,11 +1,11 @@
 import 'package:movich/utilities/constants.dart';
 import 'package:movich/service/network.dart';
-import 'page_data.dart';
-import 'results.dart';
+import '../page_data.dart';
+import '../results.dart';
 
 class MediaData {
   //TODO: should save pages in map
-  //TODO: in map page should save result list and return requested result
+  //TODO: in map page should save result lists and return requested result
   final Network _network = Network();
 
   Future<List<Results>> getTrendingList(

@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:movich/model/genre_data.dart';
+import 'package:movich/model/data/genre_data.dart';
 import 'dart:convert';
 import 'package:movich/utilities/constants.dart';
 import 'package:movich/model/page_data.dart';
