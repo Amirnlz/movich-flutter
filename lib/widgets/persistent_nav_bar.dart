@@ -14,7 +14,7 @@ class PersistentNavigationBar extends StatelessWidget {
   List<Widget> _buildScreens() {
     return [
       const HomeScreen(),
-      const FilterScreen(),
+      const ListScreen(),
       const SearchScreen(),
       const ProfileScreen(),
     ];

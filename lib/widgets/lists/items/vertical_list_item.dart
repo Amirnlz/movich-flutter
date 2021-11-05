@@ -23,8 +23,9 @@ class _VerticalListItemState extends State<VerticalListItem> {
           style: NeumorphicStyle(
             shape: NeumorphicShape.concave,
             boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
-            depth: 6,
+            depth: 8,
             lightSource: LightSource.top,
+            shadowDarkColor: Colors.black87,
             shadowLightColor: Colors.grey.shade800,
             color: const Color(0xFF08161a),
           ),
@@ -56,6 +57,7 @@ class _VerticalListItemState extends State<VerticalListItem> {
                               widget.results.title,
                               style: const TextStyle(
                                 fontSize: 16,
+                                fontWeight: FontWeight.w700,
                               ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -68,7 +70,7 @@ class _VerticalListItemState extends State<VerticalListItem> {
                               style: TextStyle(
                                 color: Colors.grey[300],
                               ),
-                              maxLines: 2,
+                              maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(
@@ -90,32 +92,35 @@ class _VerticalListItemState extends State<VerticalListItem> {
                           ],
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          NeumorphicButton(
-                            style: NeumorphicStyle(
-                              shape: NeumorphicShape.convex,
-                              boxShape: NeumorphicBoxShape.roundRect(
-                                  BorderRadius.circular(12)),
-                              color: const Color(0xFFd00000),
-                              depth: 8,
-                              surfaceIntensity: 0.9,
-                              lightSource: LightSource.bottomRight,
-                              shadowLightColor: Colors.grey.shade800,
+                      Flexible(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            NeumorphicButton(
+                              style: NeumorphicStyle(
+                                shape: NeumorphicShape.convex,
+                                boxShape: NeumorphicBoxShape.roundRect(
+                                    BorderRadius.circular(12)),
+                                color: const Color(0xFFd00000),
+                                depth: 8,
+                                surfaceIntensity: 0.9,
+                                lightSource: LightSource.bottomRight,
+                                shadowLightColor: Colors.grey.shade800,
+                                shadowDarkColor: Colors.black,
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        MediaScreen(results: widget.results),
+                                  ),
+                                );
+                              },
+                              child: const Text('Next'),
                             ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      MediaScreen(results: widget.results),
-                                ),
-                              );
-                            },
-                            child: const Text('Next'),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),

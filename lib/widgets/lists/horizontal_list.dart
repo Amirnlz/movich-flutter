@@ -8,13 +8,15 @@ import 'package:movich/widgets/shimmer_widget.dart';
 class HorizontalList extends StatefulWidget {
   final MediaType mediaType;
   final MediaListType mediaListType;
-  final int mediaId;
+  final int pageNumber;
+  final int movieId;
 
   const HorizontalList({
     Key? key,
     required this.mediaType,
     required this.mediaListType,
-    this.mediaId = 0,
+    this.pageNumber = 1,
+    this.movieId = 0,
   }) : super(key: key);
 
   @override
@@ -32,6 +34,7 @@ class _HorizontalListState extends State<HorizontalList> {
   }
 
   Future _loadData() async {
+    print('isLoading: $isLoading media: ${mediaTypeList.toString()}');
     List<Results> getResult = await _getSpecificList();
     setState(() {
       isLoading = false;
@@ -39,17 +42,17 @@ class _HorizontalListState extends State<HorizontalList> {
     });
   }
 
-  //TODO: this function should be in model not here
   Future<List<Results>> _getSpecificList() async {
-    if (widget.mediaListType == MediaListType.trending) {
-      return await MediaData()
-          .getTrendingList(widget.mediaType, TimeWindow.week, 1);
-    } else if (widget.mediaListType == MediaListType.top_rated) {
-      return await MediaData().getTopRatedList(widget.mediaType, 1);
-    } else {
-      return await MediaData()
-          .getRecommendedList(widget.mediaType, widget.mediaId);
-    }
+    return widget.mediaListType != MediaListType.recommendations
+        ? MediaData().getSpecificList(
+            widget.mediaType,
+            widget.mediaListType,
+            widget.pageNumber,
+          )
+        : MediaData().getRecommendedList(
+            widget.mediaType,
+            widget.movieId,
+          );
   }
 
   @override

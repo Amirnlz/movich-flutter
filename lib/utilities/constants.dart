@@ -10,11 +10,11 @@ enum KnownForMediaType { movie, tv }
 enum KnownForDepartment { acting, directing }
 enum ResultMediaType { person }
 
-const List<Enum> mediaTypeList = [
+const List<MediaType> mediaTypeList = [
   MediaType.movie,
   MediaType.tv,
 ];
-const List<Enum> listTypeList = [
+const List<MediaListType> listTypeList = [
   MediaListType.trending,
   MediaListType.popular,
   MediaListType.top_rated

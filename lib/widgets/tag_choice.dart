@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chip_choice/flutter_chip_choice.dart';
 
-class SingleChoice extends StatefulWidget {
-  const SingleChoice({required this.options, Key? key}) : super(key: key);
+class TagChoices extends StatefulWidget {
+  const TagChoices(
+      {required this.options,
+      required this.itemCallBack,
+      this.tag = 0,
+      Key? key})
+      : super(key: key);
   final List<Enum> options;
+  final Function(int?) itemCallBack;
+  final int tag;
 
   @override
-  _SingleChoiceState createState() => _SingleChoiceState();
+  _TagChoicesState createState() => _TagChoicesState();
 }
 
-class _SingleChoiceState extends State<SingleChoice> {
+class _TagChoicesState extends State<TagChoices> {
   int tag = 0;
-  late void Function(int)? selected;
 
   @override
   Widget build(BuildContext context) {
     return ChipsChoice<int>.single(
-      value: tag,
-      onChanged: (val) => setState(() {
-        tag = val;
-      }),
+      value: widget.tag,
+      onChanged: widget.itemCallBack,
       choiceItems: C2Choice.listFrom<int, Enum>(
         source: widget.options,
         style: (i, v) {
@@ -42,7 +46,7 @@ class _SingleChoiceState extends State<SingleChoice> {
         avatarBorderColor: Colors.white,
       ),
       choiceActiveStyle: const C2ChoiceStyle(
-        color: Color(0xFFff004d),
+        color: Color(0xFFd00000),
       ),
     );
   }

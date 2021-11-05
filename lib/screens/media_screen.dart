@@ -146,7 +146,7 @@ class MediaScreen extends StatelessWidget {
                 child: HorizontalList(
                   mediaType: results.mediaType,
                   mediaListType: MediaListType.recommendations,
-                  mediaId: results.id,
+                  movieId: results.id,
                 ),
               ),
               const SizedBox(
@@ -178,7 +178,6 @@ class MediaScreen extends StatelessWidget {
       padding: const EdgeInsets.only(left: 5.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const SizedBox(
             height: 10,

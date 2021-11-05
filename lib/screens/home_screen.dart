@@ -90,8 +90,6 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        // bottomNavigationBar: const NavigationBar(),
-        // extendBody: true,
       ),
     );
   }
@@ -101,37 +99,33 @@ class HomeScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _carouselListTitle(title),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 20,
+                fontFamily: 'Oxygen',
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            const Text(
+              'see all',
+              style: TextStyle(
+                fontSize: 14,
+                decoration: TextDecoration.underline,
+                color: Colors.lightBlue,
+              ),
+            ),
+          ],
+        ),
         HorizontalList(
           mediaType: mediaType,
           mediaListType: mediaListType,
         ),
         const SizedBox(
           height: 20,
-        ),
-      ],
-    );
-  }
-
-  Row _carouselListTitle(String title) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 20,
-            fontFamily: 'Oxygen',
-            fontWeight: FontWeight.w800,
-          ),
-        ),
-        const Text(
-          'see all',
-          style: TextStyle(
-            fontSize: 14,
-            decoration: TextDecoration.underline,
-            color: Colors.lightBlue,
-          ),
         ),
       ],
     );

@@ -6,7 +6,15 @@ import 'package:movich/widgets/lists/items/vertical_list_item.dart';
 import 'package:movich/widgets/shimmer_widget.dart';
 
 class VerticalList extends StatefulWidget {
-  const VerticalList({Key? key}) : super(key: key);
+  VerticalList(
+      {required this.media,
+      required this.mediaList,
+      this.pageNumber = 1,
+      Key? key})
+      : super(key: UniqueKey());
+  final MediaType media;
+  final MediaListType mediaList;
+  final int pageNumber;
 
   @override
   _VerticalListState createState() => _VerticalListState();
@@ -22,9 +30,15 @@ class _VerticalListState extends State<VerticalList> {
     _loadData();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   Future _loadData() async {
-    List<Results> getResult =
-        await MediaData().getTrendingList(MediaType.movie, TimeWindow.week, 1);
+    print('vertical list: ${widget.media} - ${widget.mediaList}');
+    List<Results> getResult = await MediaData()
+        .getSpecificList(widget.media, widget.mediaList, widget.pageNumber);
     setState(() {
       isLoading = false;
       results = getResult;

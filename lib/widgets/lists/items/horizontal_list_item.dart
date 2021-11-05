@@ -14,9 +14,10 @@ class HorizontalListItem extends StatelessWidget {
       style: NeumorphicStyle(
         shape: NeumorphicShape.concave,
         boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
-        depth: 2,
+        depth: 8,
         lightSource: LightSource.left,
         shadowLightColor: Colors.grey.shade800,
+        shadowDarkColor: Colors.black,
         color: const Color(0xFF08161a),
       ),
       child: Padding(
