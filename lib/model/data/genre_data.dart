@@ -1,28 +1,24 @@
-import 'package:movich/service/genre_network.dart';
-import 'package:movich/utilities/constants.dart';
+import 'package:movich/helpers/constants.dart';
+import 'package:movich/helpers/genres_list.dart';
 
 class GenreData {
-  MediaType mediaType;
-
   GenreData(this.mediaType);
 
-  Future<List<String>> getGenresName(List<int> genreIds) async {
-    List<String> names = await _searchOnList(genreIds);
+  final MediaType mediaType;
+  final List<String> genreNames = [];
 
-    return names;
-  }
-
-  Future<List<String>> _searchOnList(List<int> genreIds) async {
-    List<String> genreNames = [];
+  List<String> getGenreNames(List<int> genreIds) {
     for (int i = 0; i < genreIds.length; i++) {
-      int genreId = genreIds[i];
-      genreNames.add(await _whatIsGenreName(genreId));
+      String name = _getName(genreIds[i])!;
+      genreNames.add(name);
     }
     return genreNames;
   }
 
-  Future<String> _whatIsGenreName(int id) async {
-    Map<int, String> genres = await GenreNetwork(mediaType).getGenreMap();
-    return genres[id]!;
-  }
+  String? _getName(int id) =>
+      mediaType == MediaType.movie ? _getMovieGenre(id) : _getTVGenre(id);
+
+  String? _getMovieGenre(int id) => movieGenres[id];
+
+  String? _getTVGenre(int id) => tvGenres[id];
 }
