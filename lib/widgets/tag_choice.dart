@@ -30,6 +30,10 @@ class _TagChoicesState extends State<TagChoices> {
           return const C2ChoiceStyle(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             showCheckmark: false,
+            labelStyle: TextStyle(
+              fontFamily: 'OpenSans',
+              letterSpacing: 1.1,
+            ),
           );
         },
         activeStyle: (i, v) {
@@ -46,7 +50,8 @@ class _TagChoicesState extends State<TagChoices> {
         avatarBorderColor: Colors.white,
       ),
       choiceActiveStyle: const C2ChoiceStyle(
-        color: Color(0xFFd00000),
+        color: Color(0xFFA81A1B),
+        labelStyle: TextStyle(),
       ),
     );
   }

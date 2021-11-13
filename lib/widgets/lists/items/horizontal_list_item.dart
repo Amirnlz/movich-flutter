@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:movich/model/results.dart';
-import 'package:movich/screens/media_screen.dart';
+import 'package:movich/model/data/genre_data.dart';
+import 'package:movich/model/result.dart';
+import 'package:movich/pages/media_screen.dart';
 import '../../rating_bar.dart';
 
 class HorizontalListItem extends StatelessWidget {
   const HorizontalListItem({required this.result, Key? key}) : super(key: key);
-  final Results result;
+  final Result result;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +32,11 @@ class HorizontalListItem extends StatelessWidget {
                 onTap: () {
                   print(result.title);
                   print('id: ${result.id}');
+                  print('mediaType: ${result.mediaType}');
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => MediaScreen(results: result)),
+                        builder: (context) => MediaScreen(result: result)),
                   );
                 },
                 child: ClipRRect(
@@ -66,7 +68,9 @@ class HorizontalListItem extends StatelessWidget {
                     height: 3,
                   ),
                   Text(
-                    result.mediaGenre.join(', '),
+                    GenreData(result.mediaType)
+                        .getGenreNames(result.genreIds)
+                        .join(', '),
                     style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 13,

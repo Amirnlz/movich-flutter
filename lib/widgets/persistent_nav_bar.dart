@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movich/screens/lists_screen.dart';
-import 'package:movich/screens/home_screen.dart';
-import 'package:movich/screens/profile_screen.dart';
-import 'package:movich/screens/search_screen.dart';
+import 'package:movich/pages/lists_screen.dart';
+import 'package:movich/pages/home_screen.dart';
+import 'package:movich/pages/profile_screen.dart';
+import 'package:movich/pages/search_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:iconsax/iconsax.dart';
 

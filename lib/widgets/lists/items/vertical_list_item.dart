@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:movich/model/results.dart';
-import 'package:movich/screens/media_screen.dart';
+import 'package:movich/model/result.dart';
+import 'package:movich/pages/media_screen.dart';
+import 'package:movich/helpers/constants.dart';
 import 'package:movich/widgets/rating_bar.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class VerticalListItem extends StatefulWidget {
-  final Results results;
+  final Result results;
   const VerticalListItem({required this.results, Key? key}) : super(key: key);
 
   @override
@@ -66,7 +67,7 @@ class _VerticalListItemState extends State<VerticalListItem> {
                               height: 5,
                             ),
                             Text(
-                              widget.results.mediaGenre.join(', '),
+                              widget.results.genreIds.join(', '),
                               style: TextStyle(
                                 color: Colors.grey[300],
                               ),
@@ -97,23 +98,13 @@ class _VerticalListItemState extends State<VerticalListItem> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             NeumorphicButton(
-                              style: NeumorphicStyle(
-                                shape: NeumorphicShape.convex,
-                                boxShape: NeumorphicBoxShape.roundRect(
-                                    BorderRadius.circular(12)),
-                                color: const Color(0xFFd00000),
-                                depth: 8,
-                                surfaceIntensity: 0.9,
-                                lightSource: LightSource.bottomRight,
-                                shadowLightColor: Colors.grey.shade800,
-                                shadowDarkColor: Colors.black,
-                              ),
+                              style: kButtonNeumorphicStyle,
                               onPressed: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        MediaScreen(results: widget.results),
+                                        MediaScreen(result: widget.results),
                                   ),
                                 );
                               },

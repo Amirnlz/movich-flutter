@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movich/utilities/constants.dart';
-import 'package:movich/model/results.dart';
+import 'package:movich/helpers/constants.dart';
+import 'package:movich/model/result.dart';
 import 'package:movich/model/data/media_data.dart';
 import 'package:movich/widgets/lists/items/horizontal_list_item.dart';
 import 'package:movich/widgets/shimmer_widget.dart';
@@ -24,7 +24,7 @@ class HorizontalList extends StatefulWidget {
 }
 
 class _HorizontalListState extends State<HorizontalList> {
-  List<Results> results = [];
+  List<Result> results = [];
   bool isLoading = true;
 
   @override
@@ -35,14 +35,14 @@ class _HorizontalListState extends State<HorizontalList> {
 
   Future _loadData() async {
     print('isLoading: $isLoading media: ${mediaTypeList.toString()}');
-    List<Results> getResult = await _getSpecificList();
+    List<Result> getResult = await _getSpecificList();
     setState(() {
       isLoading = false;
       results = getResult;
     });
   }
 
-  Future<List<Results>> _getSpecificList() async {
+  Future<List<Result>> _getSpecificList() async {
     return widget.mediaListType != MediaListType.recommendations
         ? MediaData().getSpecificList(
             widget.mediaType,
