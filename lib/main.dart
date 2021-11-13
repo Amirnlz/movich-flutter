@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       home: PersistentNavigationBar(),
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: const Color(0xFF08161a),
+        primaryColor: const Color(0xFF08161a),
       ),
     );
   }
