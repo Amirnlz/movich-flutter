@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movich/widgets/persistent_nav_bar.dart';
+import 'pages/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         );
       },
       debugShowCheckedModeBanner: false,
-      home: PersistentNavigationBar(),
+      home: const SplashScreen(),
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: const Color(0xFF08161a),
         primaryColor: const Color(0xFF08161a),
