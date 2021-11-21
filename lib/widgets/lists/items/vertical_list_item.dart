@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movich/model/data/genre_data.dart';
 import 'package:movich/model/result.dart';
 import 'package:movich/pages/media_screen.dart';
 import 'package:movich/helpers/constants.dart';
@@ -67,7 +68,9 @@ class _VerticalListItemState extends State<VerticalListItem> {
                               height: 5,
                             ),
                             Text(
-                              widget.results.genreIds.join(', '),
+                              GenreData(widget.results.mediaType)
+                                  .getGenreNames(widget.results.genreIds)
+                                  .join(', '),
                               style: TextStyle(
                                 color: Colors.grey[300],
                               ),
