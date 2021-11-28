@@ -65,8 +65,8 @@ The inspiration UI is from dribbble, which mentions these links:
 
 #### Profile Screen
 
-- [ ] Create profile screen
-- [ ] Sync with logged/signed in user
+- [x] Create profile screen
+- [x] Sync with logged/signed in user
 - [ ] Edit profile elements
 
 #### UI Design and other tasks

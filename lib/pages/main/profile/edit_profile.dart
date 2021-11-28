@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatelessWidget {
-  static const String id = 'UserProfileScreen';
-
-  const ProfileScreen({Key? key}) : super(key: key);
+class EditProfile extends StatelessWidget {
+  const EditProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
       child: Scaffold(
         body: Center(
-          child: Text('Profile'),
+          child: Text('Settings'),
         ),
       ),
     );

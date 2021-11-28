@@ -5,13 +5,6 @@ import 'package:movich/pages/starter/register_page.dart';
 import 'package:movich/service/authenticate/auth_service.dart';
 import 'package:movich/widgets/custom_text_field.dart';
 import 'package:movich/widgets/persistent_nav_bar.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-
-const spinkit = SpinKitChasingDots(
-  color: Colors.white,
-  size: 50.0,
-);
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -35,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Center(
             child: _isLoading
                 ? Container(
-                    child: spinkit,
+                    child: kloadingSpinKit,
                   )
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.center,

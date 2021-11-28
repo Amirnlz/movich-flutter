@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:movich/helpers/constants.dart';
 import 'package:movich/service/authenticate/auth_service.dart';
 import 'package:movich/widgets/custom_text_field.dart';
 import 'package:movich/widgets/persistent_nav_bar.dart';
-
-const spinkit = SpinKitChasingDots(
-  color: Colors.white,
-  size: 50.0,
-);
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -48,7 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
           padding: const EdgeInsets.all(8),
           child: Center(
             child: _isLoading
-                ? Container(child: spinkit)
+                ? Container(child: kloadingSpinKit)
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

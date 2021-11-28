@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:movich/service/cloud/database_service.dart';
 import 'package:movich/widgets/lists/horizontal_list.dart';
 import 'package:movich/helpers/constants.dart';
@@ -59,16 +58,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              GestureDetector(
-                                onTap: getCurrentUser,
-                                child: Text(
-                                  'Hello ${userData.username}!',
-                                  style: const TextStyle(
-                                    fontSize: 30,
-                                    letterSpacing: 1.1,
-                                    fontFamily: 'Oxygen',
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              Text(
+                                'Hello ${userData.username}!',
+                                style: const TextStyle(
+                                  fontSize: 30,
+                                  letterSpacing: 1.1,
+                                  fontFamily: 'Oxygen',
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               const SizedBox(
@@ -87,7 +83,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           const CircleAvatar(
                             radius: 25.0,
-                            backgroundImage: AssetImage('assets/images/face2.webp'),
+                            backgroundImage:
+                                AssetImage('assets/images/face2.webp'),
                           ),
                         ],
                       ),
@@ -128,10 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               } else {
                 return const Center(
-                  child: SpinKitChasingDots(
-                    color: Colors.white,
-                    size: 50.0,
-                  ),
+                  child: kloadingSpinKit,
                 );
               }
             },

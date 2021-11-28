@@ -1,6 +1,7 @@
 //TODO: don't push key
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const apiKey = '';
 const apiUrl = 'https://api.themoviedb.org/3';
@@ -63,4 +64,9 @@ NeumorphicStyle kButtonNeumorphicStyle = NeumorphicStyle(
   lightSource: LightSource.bottomLeft,
   shadowLightColor: Colors.grey.shade800,
   shadowDarkColor: Colors.black,
+);
+
+const kloadingSpinKit = SpinKitChasingDots(
+  color: Colors.white,
+  size: 50.0,
 );
