@@ -48,7 +48,7 @@ The inspiration UI is from dribbble, which mentions these links:
 - [x] Create movie lists
 - [x] Create tv lists
 - [x] Move to the next screen
-- [ ] Sync with logged/signed in user
+- [x] Sync Info with current user
 
 #### List Screen
 
