@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movich/model/data/genre_data.dart';
+import 'package:movich/model/media/genre_data.dart';
 import 'package:movich/model/result.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:cached_network_image/cached_network_image.dart';

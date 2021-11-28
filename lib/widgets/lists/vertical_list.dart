@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movich/model/data/media_data.dart';
+import 'package:movich/model/media/media_data.dart';
 import 'package:movich/model/result.dart';
 import 'package:movich/helpers/constants.dart';
 import 'package:movich/widgets/lists/items/vertical_list_item.dart';
@@ -43,7 +43,6 @@ class _VerticalListState extends State<VerticalList> {
   }
 
   Future _loadData() async {
-    print('vertical list: ${widget.media} - ${widget.mediaList}');
     List<Result> getResult = [];
     if (widget.mediaList != MediaListType.search) {
       getResult = await MediaData()

@@ -25,7 +25,6 @@ class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _langController = TextEditingController();
   Widget _searchListMovie = const SizedBox();
   Widget _searchListTV = const SizedBox();
-  //TODO: remove year and lang input use switch instead
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;

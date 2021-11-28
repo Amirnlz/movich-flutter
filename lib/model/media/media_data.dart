@@ -4,9 +4,6 @@ import '../page_data.dart';
 import '../result.dart';
 
 class MediaData {
-  //TODO: should save pages in map
-  //TODO: in map page should save result lists and return requested result
-
   final Network _network = Network();
 
   Future<List<Result>> getSpecificList(

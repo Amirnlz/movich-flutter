@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:movich/model/data/genre_data.dart';
+import 'package:movich/model/media/genre_data.dart';
 import 'package:movich/model/result.dart';
-import 'package:movich/pages/media_screen.dart';
+import 'package:movich/pages/media/media_screen.dart';
 import '../../rating_bar.dart';
 
 class HorizontalListItem extends StatelessWidget {
@@ -30,9 +30,6 @@ class HorizontalListItem extends StatelessWidget {
               aspectRatio: 0.86,
               child: GestureDetector(
                 onTap: () {
-                  print(result.title);
-                  print('id: ${result.id}');
-                  print('mediaType: ${result.mediaType}');
                   Navigator.push(
                     context,
                     MaterialPageRoute(

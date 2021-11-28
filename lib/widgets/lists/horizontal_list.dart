@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movich/helpers/constants.dart';
 import 'package:movich/model/result.dart';
-import 'package:movich/model/data/media_data.dart';
+import 'package:movich/model/media/media_data.dart';
 import 'package:movich/widgets/lists/items/horizontal_list_item.dart';
 import 'package:movich/widgets/shimmer_widget.dart';
 
@@ -34,7 +34,6 @@ class _HorizontalListState extends State<HorizontalList> {
   }
 
   Future _loadData() async {
-    print('isLoading: $isLoading media: ${mediaTypeList.toString()}');
     List<Result> getResult = await _getSpecificList();
     setState(() {
       isLoading = false;

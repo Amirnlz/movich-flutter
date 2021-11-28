@@ -8,6 +8,7 @@ class CustomTextField extends StatelessWidget {
     required TextEditingController controller,
     required this.hintText,
     this.keyboardType = TextInputType.text,
+    this.obscureText = false,
     this.iconData,
     Key? key,
   })  : _controller = controller,
@@ -18,6 +19,7 @@ class CustomTextField extends StatelessWidget {
   final double widthSize;
   final String hintText;
   final IconData? iconData;
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class CustomTextField extends StatelessWidget {
           controller: _controller,
           keyboardType: keyboardType,
           autofocus: false,
+          obscureText: obscureText,
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: hintText,

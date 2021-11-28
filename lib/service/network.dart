@@ -16,8 +16,6 @@ class Network {
         '/recommendations'
         '?api_key=$apiKey'
         '&page=1';
-    print('recommendations: $url');
-
     return getRequestPage(url);
   }
 
@@ -29,7 +27,6 @@ class Network {
         '/${timeWindow.toShortString()}'
         '?api_key=$apiKey'
         '&page=$page';
-    print('trending: $url');
     return getRequestPage(url);
   }
 
@@ -39,7 +36,6 @@ class Network {
         '/top_rated'
         '?api_key=$apiKey'
         '&page=$page';
-    print('top_rated: $url');
     return getRequestPage(url);
   }
 
@@ -49,7 +45,6 @@ class Network {
     String url = '$apiUrl/search/${mediaType.toShortString()}'
         '/?api_key=$apiKey'
         '&language=$lang&query=$query&page=1&year=$year';
-    print('search: $url');
     return getRequestPage(url);
   }
 
@@ -62,7 +57,6 @@ class Network {
   Future<http.Response> _getResponse(var url) async {
     http.Response response = await http.get(Uri.parse(url));
     int responseCode = response.statusCode;
-    print(responseCode);
     return responseCode == 200
         ? response
         : throw ('Response failed with $responseCode code}');
