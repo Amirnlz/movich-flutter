@@ -76,8 +76,8 @@ The inspiration UI is from dribbble, which mentions these links:
 - [ ] Set the app icon
 - [x] Change theme style to neumorphism styles
 - [x] Add an animated splash screen
-- [ ] Create loging/signup screens
-- [ ] Sync with firebase
+- [x] Create loging/signup screens
+- [x] Sync with firebase
 
 ## Help
 
