@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:movich/helpers/constants.dart';
 import 'package:movich/model/user/user_data.dart';
 import 'package:movich/service/cloud/database_service.dart';
-import 'edit_profile.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String id = 'UserProfileScreen';
@@ -53,7 +52,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        // color: Colors.red,
                         height: size.height * 0.4,
                         width: size.width,
                         child: Column(
@@ -85,26 +83,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             SizedBox(
                               height: size.height * 0.01,
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const EditProfile(),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                width: size.width * 0.3,
-                                padding: const EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: Colors.grey,
-                                ),
-                                child: const Text(
-                                  'Edit profile',
-                                  textAlign: TextAlign.center,
-                                ),
+                            Container(
+                              width: size.width * 0.3,
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.grey,
+                              ),
+                              child: const Text(
+                                'Edit profile',
+                                textAlign: TextAlign.center,
                               ),
                             )
                           ],
@@ -116,12 +104,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const Divider(
                         thickness: 0.8,
                         color: Colors.grey,
-                      ),
-                      SizedBox(
-                        height: size.height * 0.02,
-                      ),
-                      const Text(
-                        'Liked movies will show here.',
                       ),
                     ],
                   ),
