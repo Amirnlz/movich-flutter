@@ -20,21 +20,21 @@ The inspiration UI is from dribbble, which mentions these links:
 <table>
 <tr>
 <td>
-<img src="screenshots/image1.png" width="400px" height="650px" alt="image1">
+<img src="screenshots/Image1.png" width="400px" height="650px" alt="image1">
 </td>
 <td>
-<img src="screenshots/image2.png" width="400px" height="650px" alt="image2">
+<img src="screenshots/Image2.png" width="400px" height="650px" alt="image2">
 </td>
 <td>
-<img src="screenshots/image3.png" width="400px" height="650px" alt="image3">
+<img src="screenshots/Image3.png" width="400px" height="650px" alt="image3">
 </td>
 </tr>
 <tr>
 <td>
-<img src="screenshots/image4.png" width="400px" height="650px" alt="image4">
+<img src="screenshots/Image4.png" width="400px" height="650px" alt="image4">
 </td>
 <td>
-<img src="screenshots/image5.png" width="400px" height="650px" alt="image5">
+<img src="screenshots/Image5.png" width="400px" height="650px" alt="image5">
 </td>
 </tr>
 </table>
@@ -67,7 +67,8 @@ The inspiration UI is from dribbble, which mentions these links:
 
 - [x] Create profile screen
 - [x] Sync with logged/signed in user
-- [ ] Edit profile elements
+- [x] Edit profile screen
+- [ ] Complete Edit Profile screen
 
 #### UI Design and other tasks
 
@@ -78,6 +79,7 @@ The inspiration UI is from dribbble, which mentions these links:
 - [x] Add an animated splash screen
 - [x] Create loging/signup screens
 - [x] Sync with firebase
+- [x] Fix overflow issue when keyboard is shown on login/register screen
 
 ## Help
 
