@@ -5,7 +5,9 @@ A Flutter project for getting to know which movie you would like to watch with v
 **_combine (which + movie) => movich_**
 
 The aim of this project is to provide flutter knowledge to get familiar with the flutter framework.
-The number of users that have been installed is not as important as criticism about code quality and performance.
+So the number of users that have been installed is not so important.
+
+I would be grateful for any criticism or suggestion that makes the project move forward.
 
 ## Inspiration
 
@@ -41,45 +43,23 @@ The inspiration UI is from dribbble, which mentions these links:
 
 ## Tasks
 
-#### Home Screen
-
-- [x] Create home Screen
-- [x] Create horizontal scroll lists
-- [x] Create movie lists
-- [x] Create tv lists
-- [x] Move to the next screen
-- [x] Sync Info with current user
+Some that needed to be done:
 
 #### List Screen
 
-- [x] Create list screen
-- [x] Create filter tags
-- [x] Create vertical scroll lists
-- [x] Add page numbers
 - [ ] Change filter tag to neumorphism style
 
 #### Search Screen
 
-- [x] Create search screen
-- [x] Add search elements that needs
+- [ ] Fix searching 
 
 #### Profile Screen
 
-- [x] Create profile screen
-- [x] Sync with logged/signed in user
-- [x] Edit profile screen
 - [ ] Complete Edit Profile screen
+- [ ] Show liked media
+- [ ] Add profile photo
 
-#### UI Design and other tasks
 
-- [x] Create a UI for the app
-- [x] Set dark mode
-- [x] Set the app icon
-- [x] Change theme style to neumorphism styles
-- [x] Add an animated splash screen
-- [x] Create loging/signup screens
-- [x] Sync with firebase
-- [x] Fix overflow issue when keyboard is shown on login/register screen
 
 ## Help
 
