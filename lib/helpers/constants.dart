@@ -42,6 +42,8 @@ extension ParseToStringMediaListType on MediaListType {
   }
 }
 
+const Color kbackgroundColor = Color(0xFF08161a);
+
 NeumorphicStyle kSearchNeumorphicStyle = NeumorphicStyle(
   shape: NeumorphicShape.concave,
   color: const Color(0xFF08161a),

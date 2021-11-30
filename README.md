@@ -74,7 +74,7 @@ The inspiration UI is from dribbble, which mentions these links:
 
 - [x] Create a UI for the app
 - [x] Set dark mode
-- [ ] Set the app icon
+- [x] Set the app icon
 - [x] Change theme style to neumorphism styles
 - [x] Add an animated splash screen
 - [x] Create loging/signup screens
