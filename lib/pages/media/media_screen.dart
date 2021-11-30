@@ -17,14 +17,15 @@ class MediaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: size.height * 0.01,
               ),
               AspectRatio(
                 aspectRatio: 1.8,
@@ -32,20 +33,23 @@ class MediaScreen extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   child: Stack(
                     children: [
-                      Center(
-                        child: CachedNetworkImage(
-                          imageUrl:
-                              'https://image.tmdb.org/t/p/original/${result.backdropPath}',
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) =>
-                                  const SpinKitPianoWave(
-                            color: Colors.white,
-                            size: 50.0,
-                          ),
-                          errorWidget: (context, url, error) => const Icon(
-                            Icons.error,
-                            size: 50.0,
-                            color: Colors.red,
+                      Hero(
+                        tag: result.id,
+                        child: Center(
+                          child: CachedNetworkImage(
+                            imageUrl:
+                                'https://image.tmdb.org/t/p/original/${result.backdropPath}',
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) =>
+                                    const SpinKitPianoWave(
+                              color: Colors.white,
+                              size: 50.0,
+                            ),
+                            errorWidget: (context, url, error) => const Icon(
+                              Icons.error,
+                              size: 50.0,
+                              color: Colors.red,
+                            ),
                           ),
                         ),
                       ),
@@ -76,24 +80,19 @@ class MediaScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
+              SizedBox(height: size.height * 0.01),
               Center(
                 child: Text(
                   result.title,
                   style: const TextStyle(
                     fontSize: 26,
-                    fontFamily: 'Oxygen',
                     letterSpacing: 1.2,
                   ),
                   textAlign: TextAlign.center,
                 ),
               ),
               _showOriginalTitle(),
-              const SizedBox(
-                height: 8,
-              ),
+              SizedBox(height: size.height * 0.01),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -101,7 +100,6 @@ class MediaScreen extends StatelessWidget {
                     result.releaseDate.year.toString(),
                     style: const TextStyle(
                       fontSize: 18,
-                      fontFamily: 'OpenSans',
                     ),
                   ),
                   const Text(
@@ -110,16 +108,17 @@ class MediaScreen extends StatelessWidget {
                       fontSize: 10,
                     ),
                   ),
-                  Text(
-                    GenreData(result.mediaType)
-                        .getGenreNames(result.genreIds)
-                        .join(", "),
-                    style: const TextStyle(
-                      fontSize: 17,
-                      fontFamily: 'OpenSans',
+                  Flexible(
+                    child: Text(
+                      GenreData(result.mediaType)
+                          .getGenreNames(result.genreIds)
+                          .join(", "),
+                      style: const TextStyle(
+                        fontSize: 17,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
@@ -131,18 +130,18 @@ class MediaScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              description('Overview', result.overview),
-              description('Original Language', result.originalLanguage),
-              description('Release Date',
+              SizedBox(height: size.height * 0.01),
+              description('Overview:', result.overview),
+              SizedBox(height: size.height * 0.01),
+              description('Original Language:', result.originalLanguage),
+              SizedBox(height: size.height * 0.01),
+              description('Release Date:',
                   "${result.releaseDate.year}-${result.releaseDate.month}-${result.releaseDate.day}"),
-              const SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: size.height * 0.01),
               const Text(
-                'Recommendations :',
+                'Recommendations:',
                 style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: 'OpenSans',
+                  fontSize: 15,
                 ),
               ),
               Padding(
@@ -153,9 +152,7 @@ class MediaScreen extends StatelessWidget {
                   movieId: result.id,
                 ),
               ),
-              const SizedBox(
-                height: 40,
-              ),
+              SizedBox(height: size.height * 0.08),
             ],
           ),
         ),
@@ -170,7 +167,6 @@ class MediaScreen extends StatelessWidget {
             child: Text(
               result.originalTitle,
               style: TextStyle(
-                fontFamily: 'Oxygen',
                 color: Colors.grey.shade300,
               ),
             ),
@@ -183,20 +179,15 @@ class MediaScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(
-            height: 10,
-          ),
           Text(
-            '$descriptionTitle:',
+            descriptionTitle,
             style: const TextStyle(
-              fontSize: 16,
-              fontFamily: 'OpenSans',
+              fontSize: 15,
             ),
           ),
           Text(
             description,
             style: TextStyle(
-              fontFamily: 'OpenSans',
               color: Colors.grey.shade400,
             ),
           ),

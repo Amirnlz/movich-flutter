@@ -11,6 +11,7 @@ class HorizontalListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Neumorphic(
       style: NeumorphicStyle(
         shape: NeumorphicShape.concave,
@@ -45,9 +46,7 @@ class HorizontalListItem extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 5,
-            ),
+            SizedBox(height: size.height * 0.005),
             AspectRatio(
               aspectRatio: 1.84,
               child: Column(
@@ -56,13 +55,10 @@ class HorizontalListItem extends StatelessWidget {
                   Text(
                     result.title,
                     style: const TextStyle(
-                      fontSize: 15,
+                      fontSize: 14,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(
-                    height: 3,
                   ),
                   Text(
                     GenreData(result.mediaType)
@@ -75,9 +71,7 @@ class HorizontalListItem extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(
-                    height: 3,
-                  ),
+                  SizedBox(height: size.height * 0.005),
                   RatingBar(rating: result.voteAverage),
                 ],
               ),

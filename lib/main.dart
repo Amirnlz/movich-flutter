@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'helpers/constants.dart';
 import 'pages/starter/splash_screen.dart';
 
 void main() async {
@@ -21,9 +22,11 @@ class MyApp extends StatelessWidget {
       },
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color(0xFF08161a),
-        primaryColor: const Color(0xFF08161a),
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: kbackgroundColor,
+        primaryColor: kbackgroundColor,
+        fontFamily: 'Poppins',
       ),
     );
   }

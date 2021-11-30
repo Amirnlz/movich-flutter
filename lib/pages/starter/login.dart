@@ -5,6 +5,7 @@ import 'package:movich/pages/starter/register_page.dart';
 import 'package:movich/service/authenticate/auth_service.dart';
 import 'package:movich/widgets/custom_text_field.dart';
 import 'package:movich/widgets/persistent_nav_bar.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -23,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
@@ -38,22 +40,23 @@ class _LoginPageState extends State<LoginPage> {
                         'Login',
                         style: TextStyle(
                           fontSize: 30,
-                          fontFamily: 'Oxygen',
                         ),
                       ),
                       const SizedBox(height: 20),
                       CustomTextField(
+                        title: 'Email:',
                         controller: _emailController,
-                        widthSize: size.width * 0.8,
-                        hintText: "Email",
+                        width: size.width * 0.8,
+                        hintText: 'Enter account email...',
                         keyboardType: TextInputType.emailAddress,
                       ),
                       const SizedBox(height: 20),
                       CustomTextField(
+                        title: 'Password:',
                         controller: _passwordController,
-                        widthSize: size.width * 0.8,
+                        width: size.width * 0.8,
                         keyboardType: TextInputType.text,
-                        hintText: "Password",
+                        hintText: "Password...",
                         obscureText: true,
                       ),
                       const SizedBox(height: 20),
@@ -91,8 +94,8 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 15,
+                      SizedBox(
+                        height: size.height * 0.015,
                       ),
                       GestureDetector(
                         onTap: () {
@@ -121,5 +124,5 @@ class _LoginPageState extends State<LoginPage> {
 }
 
 bool isInputsFilled(String email, String password) {
-  return email.isNotEmpty || password.isNotEmpty;
+  return email.isNotEmpty && password.isNotEmpty;
 }

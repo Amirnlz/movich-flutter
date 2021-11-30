@@ -38,6 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+         resizeToAvoidBottomInset: false,
         body: Padding(
           padding: const EdgeInsets.all(8),
           child: Center(
@@ -51,46 +52,50 @@ class _RegisterPageState extends State<RegisterPage> {
                         'SignUp',
                         style: TextStyle(
                           fontSize: 30,
-                          fontFamily: 'Oxygen',
                         ),
                       ),
                       const SizedBox(height: 20),
                       CustomTextField(
-                        widthSize: size.width * 0.8,
+                        title: 'Full Name:',
+                        width: size.width * 0.8,
                         controller: _fullNameController,
-                        hintText: 'Full name',
+                        hintText: 'Enter your full Name...',
                       ),
                       const SizedBox(height: 20),
                       CustomTextField(
-                        widthSize: size.width * 0.8,
+                        title: 'Username:',
+                        width: size.width * 0.8,
                         controller: _usernameController,
-                        hintText: "Username",
+                        hintText: "Choose username...",
                         keyboardType: TextInputType.name,
                       ),
                       const SizedBox(height: 20),
                       CustomTextField(
+                        title: 'Email:',
                         controller: _emailController,
-                        widthSize: size.width * 0.8,
-                        hintText: "Email",
+                        width: size.width * 0.8,
+                        hintText: "Enter your email...",
                         keyboardType: TextInputType.emailAddress,
                       ),
                       const SizedBox(height: 20),
                       CustomTextField(
+                        title: 'Password:',
                         controller: _passwordController,
-                        widthSize: size.width * 0.8,
+                        width: size.width * 0.8,
                         keyboardType: TextInputType.text,
                         hintText: "Password",
                         obscureText: true,
                       ),
                       const SizedBox(height: 20),
                       CustomTextField(
+                        title: 'Confirm Password:',
                         controller: _confirmPasswordController,
-                        widthSize: size.width * 0.8,
+                        width: size.width * 0.8,
                         keyboardType: TextInputType.text,
                         hintText: "Confirm Password",
                         obscureText: true,
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: size.height * 0.05),
                       NeumorphicButton(
                         style: kButtonNeumorphicStyle,
                         padding: EdgeInsets.symmetric(
@@ -99,7 +104,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         onPressed: () async {
                           String fullName = _fullNameController.text.trim();
-                          String username = _usernameController.text.trim();
+                          String username =
+                              _usernameController.text.trim().toUpperCase();
                           String email = _emailController.text.trim();
                           String password = _passwordController.text.trim();
                           String confirmPassword =
@@ -128,6 +134,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           'SignUp',
                           style: TextStyle(
                             fontSize: 15,
+                            // fontWeight: FontWeight.bold
                           ),
                         ),
                       ),
@@ -142,10 +149,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
 bool isInputFilled(String fullName, String username, String email,
     String password, String confirmPassword) {
-  if (fullName.isNotEmpty ||
-      username.isNotEmpty ||
-      email.isNotEmpty ||
-      password.isNotEmpty ||
+  if (fullName.isNotEmpty &&
+      username.isNotEmpty &&
+      email.isNotEmpty &&
+      password.isNotEmpty &&
       confirmPassword.isNotEmpty) {
     return true;
   }
