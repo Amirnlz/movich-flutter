@@ -10,6 +10,15 @@ class DatabaseService {
 
   Future addUserData(String username, String fullName, String email) async {
     return await _userCollection.doc(uid).set({
+      'uid': uid,
+      'username': username,
+      'fullName': fullName,
+      'email': email,
+    });
+  }
+
+  Future updateUserData(String username, String fullName, String email) async {
+    return await _userCollection.doc(uid).update({
       'username': username,
       'fullName': fullName,
       'email': email,
@@ -22,6 +31,7 @@ class DatabaseService {
 
   UserData _userProfileFromSnapshot(DocumentSnapshot snapshot) {
     return UserData(
+      uid: uid,
       fullName: snapshot['fullName'],
       username: snapshot['username'],
       email: snapshot['email'],
