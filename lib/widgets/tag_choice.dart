@@ -31,7 +31,6 @@ class _TagChoicesState extends State<TagChoices> {
             borderRadius: BorderRadius.all(Radius.circular(10)),
             showCheckmark: false,
             labelStyle: TextStyle(
-              fontFamily: 'OpenSans',
               letterSpacing: 1.1,
             ),
           );
